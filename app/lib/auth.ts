@@ -1,9 +1,9 @@
-import NextAuth from 'next-auth';
-import GitHub from 'next-auth/providers/github';
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { prisma } from './prisma';
+import { getServerSession, type NextAuthOptions } from "next-auth";
+import GitHub from "next-auth/providers/github";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { prisma } from "./prisma";
 
-export const { auth, handlers, signIn, signOut } = NextAuth({
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GitHub({
@@ -11,5 +11,17 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       clientSecret: process.env.GITHUB_SECRET!,
     }),
   ],
-  session: { strategy: 'database' },
-});
+  callbacks: {
+    session: async ({ session, user }) => {
+      if (session.user) {
+        session.user.id = user.id;
+      }
+      return session;
+    },
+  },
+  session: { strategy: "database" },
+};
+
+export function auth() {
+  return getServerSession(authOptions);
+}

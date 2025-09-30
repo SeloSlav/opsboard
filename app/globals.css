@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 @import "tailwindcss";
 
 :root {
@@ -20,7 +23,43 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(145deg, rgba(242, 248, 255, 1) 0%, rgba(220, 234, 255, 1) 50%, rgba(206, 223, 255, 1) 100%);
+  color: #101828;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  min-height: 100vh;
+}
+
+.glass-panel {
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.65));
+  border: 1px solid rgba(229, 242, 255, 0.8);
+  box-shadow: 0 18px 45px rgba(15, 30, 70, 0.15);
+  backdrop-filter: blur(22px);
+}
+
+.glow-edge {
+  position: relative;
+}
+
+.glow-edge::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  background: linear-gradient(120deg, rgba(108, 173, 255, 0.6), rgba(161, 231, 255, 0.45)) border-box;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.max-content-width {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 2vw + 1rem, 3rem);
+}
+
+.section-spacing {
+  padding-block: clamp(4rem, 8vw, 7rem);
 }

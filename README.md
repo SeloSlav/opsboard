@@ -34,6 +34,14 @@ npm run db:seed
 ```
 This builds the schema and drops in a demo org, user, and a few tickets.
 
+### 6. Update schema changes later
+Whenever you edit `prisma/schema.prisma`, run the Prisma pipeline so the database and generated client stay in sync:
+```bash
+npx prisma migrate dev --name describe_the_change
+npx prisma generate
+```
+Restart the dev server (`CTRL+C`, then `npm run dev`) so Next.js picks up the regenerated client. On Windows/OneDrive, pause sync while these commands run if you hit `EPERM ... rename ... query_engine-windows.dll.node` errors, then resume afterward.
+
 ### 6. Fire up the app
 ```bash
 npm run dev
