@@ -1,4 +1,8 @@
-## OpsBoard – Start Here (I’ll walk you through it)
+<div align="center">
+  <img src="./public/logo.png" alt="Nimbra logo" width="120" />
+</div>
+
+## Nimbra – Start Here (I’ll walk you through it)
 
 I’m building OpsBoard to feel like the real client-ops portals we ship in agencies. Here’s the exact checklist I follow to get it running locally.
 
@@ -9,20 +13,20 @@ I’m building OpsBoard to feel like the real client-ops portals we ship in agen
 ### 2. Pull the code and install packages
 ```bash
 git clone https://github.com/<SeloSlav>/opsboard.git
-cd opsboard
+cd nimbra
 npm install
 ```
 
 ### 3. Create the database
 ```bash
-psql -U postgres -c "CREATE DATABASE opsboard;"
+psql -U postgres -c "CREATE DATABASE db;"
 ```
 If `psql` isn’t on your PATH, add `"C:\\Program Files\\PostgreSQL\\16\\bin"` to it.
 
 ### 4. Configure environment variables
 Duplicate `.env.example` to `.env` and fill in real secrets:
 ```
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/opsboard"
+DATABASE_URL="postgresql://postgres:postgres@localhost:port/db"
 NEXTAUTH_SECRET="<python -c \"import secrets; print(secrets.token_urlsafe(64))\">"
 GITHUB_ID="<GitHub OAuth client ID>"
 GITHUB_SECRET="<GitHub OAuth client secret>"
