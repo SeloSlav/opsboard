@@ -1,7 +1,11 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const nextConfig = {
+  experimental: {
+    ppr: true,
+    serverActions: true,
+  },
+  transpilePackages: [],
 };
 
 export default nextConfig;
