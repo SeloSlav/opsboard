@@ -5,11 +5,10 @@ I’m building OpsBoard to feel like the real client-ops portals we ship in agen
 ### 1. Install the basics
 - Node.js 18+ (grab the LTS installer from nodejs.org and restart PowerShell afterward)
 - PostgreSQL (I use the Windows installer and keep the `postgres` user/password set to `postgres`)
-- Git (optional but handy for cloning)
 
 ### 2. Pull the code and install packages
 ```bash
-git clone https://github.com/<your-user>/opsboard.git
+git clone https://github.com/<SeloSlav>/opsboard.git
 cd opsboard
 npm install
 ```
@@ -28,7 +27,6 @@ NEXTAUTH_SECRET="<python -c \"import secrets; print(secrets.token_urlsafe(64))\"
 GITHUB_ID="<GitHub OAuth client ID>"
 GITHUB_SECRET="<GitHub OAuth client secret>"
 ```
-
 ### 5. Migrate + seed data
 ```bash
 npx prisma migrate dev --name init
