@@ -21,7 +21,11 @@ const footerLinks = [
   },
 ];
 
-export function Footer() {
+type FooterProps = {
+  hideProductLinks?: boolean;
+};
+
+export function Footer({ hideProductLinks = false }: FooterProps) {
   return (
     <footer className="section-spacing border-t border-slate-200/70 bg-white/40">
       <div className="max-content-width grid gap-10 md:grid-cols-[1.8fr_1fr_1fr] text-sm text-slate-600">
@@ -62,26 +66,34 @@ export function Footer() {
           </div>
         </div>
 
-        {footerLinks.map((section) => (
-          <div key={section.heading} className="space-y-3">
-            <h4 className="text-slate-900 text-sm font-semibold uppercase tracking-[0.2em]">
-              {section.heading}
-            </h4>
-            <ul className="space-y-2">
-              {section.links.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    target={link.external ? "_blank" : undefined}
-                    className="transition-colors text-slate-600 hover:text-slate-900"
-                  > 
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        {footerLinks.map((section) => {
+          const isProduct = section.heading === "Product";
+
+          if (hideProductLinks && isProduct) {
+            return <div key={section.heading} />;
+          }
+
+          return (
+            <div key={section.heading} className="space-y-3">
+              <h4 className="text-slate-900 text-sm font-semibold uppercase tracking-[0.2em]">
+                {section.heading}
+              </h4>
+              <ul className="space-y-2">
+                {section.links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      target={link.external ? "_blank" : undefined}
+                      className="transition-colors text-slate-600 hover:text-slate-900"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
 
       <div className="max-content-width mt-12 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4">
